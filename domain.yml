@@ -1,0 +1,278 @@
+session_config:
+  session_expiration_time: 30  # value in minutes, 0 means infinitely long
+  carry_over_slots_to_new_session: true  # set to false to forget slots between sessions
+  
+  
+intents:
+- get_started
+- status_of_my_order
+- Order_placed_tommorrow
+- todays_Lunchbox_details
+- cancel_order_for_next_friday
+- lunchpacks_available
+- Show Current Offers
+- quickreply
+- quickreply1
+- quickreply2
+- quickreply3
+- quickreply4
+- quickreply5
+- quickreply6
+- quickreply7
+- greet
+- email
+- Quick Order
+- Number
+- Favourite_Lunchpack
+- LunchPack_LastOrder
+- custom_lunchpack
+
+
+
+
+actions:
+- utter_welcome_message
+- utter_greet
+- utter_business_email
+- action_business_email
+- action_Quick Order
+- action_serialNumber
+- action_Order
+- action_which_date
+- action_select_date
+- action_validate_otp
+- action_feedback
+- action_Please_go_quickorder
+- action_for_location
+
+
+entities:
+- quickreply_value
+- business_email
+- Serial_Number
+- quickreply_value1
+- quickreply_value2
+- quickreply_value3
+- quickreply_value4
+- quickreply_value5
+- quickreply_value6
+- quickreply_value7
+
+
+
+responses:
+  
+  utter_business_email:
+    - text: Can you please provide me your  email address ?
+    
+  utter_greet:
+    - text: Hey there, my name is Roku.
+    - text: Hey!
+    - text: Hi!
+    - text: Hey there!
+    
+    
+  utter_no_email:
+    - text: Hmm, I'm not sure that's a valid  email address, please make sure to include the full address 😅
+    
+  utter_welcome_message:
+  - buttons:
+    - payload: /quickreply{"quickreply_value":"Quick Order"}
+      title: Quick Order
+    - payload: /quickreply{"quickreply_value":"Show Current Offers"}
+      title: Show Current Offers
+    - payload: /quickreply{"quickreply_value":"status_of_my_order"}
+      title: What is the status of my today's order?
+    - payload: /quickreply{"quickreply_value":"Order_placed_tommorrow"}
+      title: Do I have a order placed for tomorrow?
+    - payload: /quickreply{"quickreply_value":"todays_Lunchbox_details"}
+      title: Please provide me today's lunchbox details 
+    - payload: /quickreply{"quickreply_value":"cancel_order_for_next_friday"}
+      title: Cancel Order
+    - payload: /quickreply{"quickreply_value":"lunchpacks_available"}
+      title: What are lunchpacks available
+    text: Hello ! My name is Roku bot. I can help you with Order details. Please select your query below.
+    
+  Enter_SlNO:
+    - text: Please select the child to place order. 
+    
+  Food_item:  
+    - text: Please select the lunch pack to know more about it. 
+    
+  Enter_SlNO_canel:
+    - text: Please select the child to cancel the order. 
+    
+  select_date: 
+    - text : For which date you want to place the order ?.
+    
+  utter_lunch_pack:
+  - buttons:
+    - payload: /quickreply1{"quickreply_value1":"Favourite_Lunchpack"}
+      title: Your favourite lunchpack?
+    - payload: /quickreply1{"quickreply_value1":"LunchPack_LastOrder"}
+      title: the lunchpack from last order?
+    - payload: /quickreply1{"quickreply_value1":"custom_lunchpack"}
+      title: Custom Lunchpack
+    text: Would you like to place order with.
+    
+  customize_link:
+    - text: 'Please Click on the link to customize your lunch pack [https://cornerstonesolutions.ai/subs/](https://cornerstonesolutions.ai/subs/)'
+    
+  Location_link:
+    - text: 'Please Click on the link to customize your lunch pack [https://i.stack.imgur.com/K7s0p.png](https://i.stack.imgur.com/K7s0p.png)'
+
+    
+  utter_Yes_no:
+  - buttons:
+    - payload: /quickreply2{"quickreply_value2":"affirm"}
+      title: YES
+    - payload: /quickreply2{"quickreply_value2":"deny"}
+      title: NO
+    text: Do you wish to proceed with this order?.
+    
+  Location_Time_details:
+  - text: Please select the order for which you want to know the Location and expected time details.
+  
+    
+    
+  utter_confirm_order:
+  - buttons:
+    - payload: /quickreply3{"quickreply_value3":"affirm"}
+      title: YES
+    - payload: /quickreply3{"quickreply_value3":"deny"}
+      title: NO
+    text: Do you want to confirm the order.
+    
+  utter_cancel_order:
+  - buttons:
+    - payload: /quickreply4{"quickreply_value4":"affirm"}
+      title: YES
+    - payload: /quickreply4{"quickreply_value4":"deny"}
+      title: NO
+    text: Do you want to cancel the order.
+    
+  utter_place_quick_order:
+  - buttons:
+    - payload: /quickreply6{"quickreply_value6":"affirm"}
+      title: YES
+    - payload: /quickreply6{"quickreply_value6":"deny"}
+      title: NO
+    text: Do you want to place quick order.
+    
+  utter_location_more_details:
+  - buttons:
+    - payload: /quickreply7{"quickreply_value7":"affirm"}
+      title: YES
+    - payload: /quickreply7{"quickreply_value7":"deny"}
+      title: NO
+    text: Do you want more details like expected time and current location.
+    
+    
+  utter_feedback:
+  - buttons:
+    - payload: /quickreply5{"quickreply_value5":"Number"}
+      title: 1. Very Bad 
+    - payload: /quickreply5{"quickreply_value5":"Number"}
+      title: 2. Bad 
+    - payload: /quickreply5{"quickreply_value5":"Number"}
+      title: 3. Average  
+    - payload: /quickreply5{"quickreply_value5":"Number"}
+      title: 4. Good 
+    - payload: /quickreply5{"quickreply_value5":"Number"}
+      title: 5. Very Good 
+    text: Please rate our chatbot service based on your current interaction.
+  
+  Enter_OTP:
+    - text: Can you please provide me with the OTP which is sent to your email or Mobile?
+   
+    
+  Enter_Valid_OTP:
+    - text: Please enter valid OTP send to you Email or Mobile.
+    
+   
+
+
+slots:
+  business_email:
+    type: unfeaturized
+    
+  quickreply_value:
+    type: categorical
+    values:
+    - Quick Order
+    - Show Current Offers
+    - status_of_my_order
+    - Order_placed_tommorrow
+    - todays_Lunchbox_details
+    - cancel_order_for_next_friday
+    - lunchpacks_available
+    
+  Serial_Number:
+    type: text
+    
+  quickreply_value1:
+    type: categorical
+    values:
+    - Favourite_Lunchpack
+    - LunchPack_LastOrder
+    - custom_lunchpack
+  child_id:
+    type: text
+    
+  order_id:
+    type: text
+    
+    
+  quickreply_value2:
+    type: categorical
+    values:
+    - affirm
+    - deny
+    
+    
+  order_detail_id:
+    type: text
+    
+  quickreply_value3:
+    type: categorical
+    values:
+    - affirm
+    - deny
+   
+  Date:
+    type: text
+    
+  quickreply_value4:
+    type: categorical
+    values:
+    - affirm
+    - deny
+    
+    
+  quickreply_value6:
+    type: categorical
+    values:
+    - affirm
+    - deny
+    
+  quickreply_value5:
+    type: categorical
+    values:
+    - Number
+    - Number
+    - Number
+    - Number
+    - Number
+    
+  quickreply_value7:
+    type: categorical
+    values:
+    - affirm
+    - deny
+    
+    
+    
+      
+   
+    
+    
