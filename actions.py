@@ -592,10 +592,6 @@ class ActionFeedBack(Action):
         api.place_order(data)
         return()   
 
-
-
-
-
 class ActionPleaseGoQuickOrder(Action):
     """Business Email Extractions"""
     
@@ -630,5 +626,4 @@ class ActionForLocation(Action):
             dispatcher.utter_message(template="Location_Time_details")
         else:
              dispatcher.utter_message(template="utter_feedback")
-           
            
