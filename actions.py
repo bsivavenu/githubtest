@@ -5,27 +5,6 @@
 # https://rasa.com/docs/rasa/core/actions/#custom-actions/
 
 
-# This is a simple example for a custom action which utters "Hello World!"
-
-# from typing import Any, Text, Dict, List
-#
-# from rasa_sdk import Action, Tracker
-# from rasa_sdk.executor import CollectingDispatcher
-#
-#
-# class ActionHelloWorld(Action):
-#
-#     def name(self) -> Text:
-#         return "action_hello_world"
-#
-#     def run(self, dispatcher: CollectingDispatcher,
-#             tracker: Tracker,
-#             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
-#
-#         dispatcher.utter_message(text="Hello World!")
-#
-#         return []
-
 from rasa_sdk.forms import FormAction
 import re
 from rasa_sdk import Action, Tracker
@@ -55,7 +34,6 @@ def custom_strftime(format, t):
 class ActionBusinessEmail(Action):
     """Business Email Extractions"""
     
-
     def name(self):
         return "action_business_email"
     
@@ -211,46 +189,6 @@ class ActionBusinessEmail(Action):
             print("inside else")
             dispatcher.utter_message(template="utter_no_email")
             return [UserUtteranceReverted()]
-            
-            
-# class ActionQuickOrder(Action):
-    # """Business Email Extractions"""
-    
-
-    # def name(self):
-        # return "action_Quick Order"
-    
-    # def run(self,dispatcher,tracker,domain):
-        # inte = tracker.get_slot("quickreply_value")
-        # value=tracker.get_slot('business_email')
-        # if re.match(r"[a-zA-Z0-9_.+-]+@[a-zA-Z]+\.[^@]+",str(value)):
-            # print(value)
-            # print("inside action_quick_order")
-            # data = {"token": "null","data": {"user_email": value}}
-            # response = requests.post('https://cornerstonesolutions.ai/subs/api_verify_user',data=json.dumps(data))
-            # r = response.json()
-            # r=api.verify_user(data)
-            # print("r",r)
-            # if(r== True):
-                # dispatcher.utter_message('Registered')
-                # response = requests.post('https://cornerstonesolutions.ai/subs/api_child_list',data=json.dumps(data))
-                # r = response.json()
-                # r=api.child_list(data)
-                # dat=(r['data'])
-                # q=sum([1 for d in dat if 'serial' in d])
-                # for w in range((q)):
-                    # serial=dat[w]["serial"]
-                    # childname=dat[w]["child_name"]
-                    # out_message=("{})  {}.".format(serial ,childname))
-                    # dispatcher.utter_message(out_message)
-                # dispatcher.utter_message(template='Enter_SlNO') 
-                
-            # else:
-                # return(dispatcher.utter_message("User email is not registered"))
-        # else:
-            # print("inside else")
-            # dispatcher.utter_message(template="utter_no_email")
-            # return [UserUtteranceReverted()]        
 
 def extract_nested_values(it):
 	if isinstance(it, list):
@@ -346,16 +284,7 @@ class ActionSerialNumber(Action):
                             dispatcher.utter_message(template="utter_cancel_order")
                             return [SlotSet('order_detail_id',order_detail_id)]
                             # dispatcher.utter_message(template="Enter_OTP")
-                            # results = api.cancel_my_order(data)
-                            # # print(results)
-                            # # t=results['status']
-                            # # if (t==True):
-                            # print('success')
-                            # dispatcher.utter_message("The order has been cancelled")
-                            # dispatcher.utter_message(template="utter_feedback")
-                            # # else:
-                            # 	out_message = ('The order cant be cancelled as {}'.format(results['msg']))
-                            # 	dispatcher.utter_message(out_message)
+
                         else:
                             results = api.cancel_my_order(data)
                             out_message = ('The order cant be cancelled as {}'.format(results['msg']))
@@ -403,24 +332,9 @@ class ActionSerialNumber(Action):
                     else:
                         dispatcher.utter_message(template="utter_lunch_pack")
                             
-                            
-                            
-                            
-                        
-       
-                # else:
-                    # if(inte=="Quick Order"):
-                        # dispatcher.utter_message(template="utter_lunch_pack")
-                    # else:
-                        # print("status_select number")
-                        # serial=int(serial)
-                        # serial= serial-1
-                        # child_id=dat[serial]["child_id"]
-                        # dispatcher.utter_message(child_id)
+ 
              
-              
-             
-            
+           
 class ActionOrder(Action):
     """Business Email Extractions"""
     
@@ -496,78 +410,7 @@ class ActionOrder(Action):
             dispatcher.utter_message(template="utter_feedback")
      
         
-# class ActionLunchPacksAvailable(Action):
-    # """Business Email Extractions"""
-    
 
-    # def name(self):
-        # return "action_lunchpacks_available"
-    
-    # def run(self,dispatcher,tracker,domain):
-        # serial = tracker.get_slot("Serial_Number")
-        # value=tracker.get_slot('business_email')
-        # print(serial)
-        
-        # data = {"token": "null","data": {"user_email": value}}
-
-        # response = requests.post('https://cornerstonesolutions.ai/subs/api_available_lunch_pack',data=json.dumps(data))
-        # r = response.json()
-        # r=api.available_lunch_pack(data)
-        # dat=(r['data'])
-        # print("inside serial")
-        # print(serial)
-        # if(serial==None):
-            # q=sum([1 for d in dat if 'id' in d])
-            # for w in range((q)):
-               # serial=dat[w]["serial"]
-               # name=dat[w]["name"]
-               # out_message=("Please enter {} if you want to place order for {}.".format(serial ,name))
-               # dispatcher.utter_message(out_message)
-            # return [UserUtteranceReverted()]
-           
-        # else:
-            # c= serial.isdigit()
-            # q=sum([1 for d in dat if 'id' in d])
-            # if(c== False):
-                # dat=(r['data'])
-                # for w in range((q)):
-                    # serial=dat[w]["serial"]
-                    # name=dat[w]["name"]
-                    # out_message=("Please enter {} if you want to place order for {}.".format(serial ,name))
-                    # dispatcher.utter_message(out_message)
-                # return [UserUtteranceReverted()]
-
-            # else:
-                # k=int(serial)
-                # q=sum([1 for d in dat if 'id' in d])
-                # if(k>q or k==0):
-                    # for w in range((q)):
-                        # serial=dat[w]["serial"]
-                        # name=dat[w]["name"]
-                        # out_message=("Please enter {} if you want to place order for {}.".format(serial ,name))
-                        # dispatcher.utter_message(out_message)
-                    # return [UserUtteranceReverted()]
-
-                # else:
-                    # k= k-1
-                    # idno=dat[k]["id"]
-                    # data = {"token": "null","data": {"user_email": value, "id":idno}}
-                    # response = requests.post('https://cornerstonesolutions.ai/subs/api_lunch_pack_detail',data=json.dumps(data))
-                    # r = response.json()
-                    # r=api.lunch_pack_detail(data)
-                    # dat= r['pack_products']
-                    # for key,values in dat.items():
-                        # details=list(extract_nested_values(values))
-    # print(details[0]+".",details[1]+":",details[2])
-                        # Id=details[0]
-                        # Name=details[1]
-                        # Info= details[2:]
-    # info = (*Info,sep =",")
-                        # out_message=("{}.{}:".format(Id ,Name))
-                        # out_message_1 = ("{}".format(Info))
-                        # dispatcher.utter_message(out_message)
-                        # dispatcher.utter_message(out_message_1)
-            
             
 class ActionWhichDate(Action):
     """Selection of date for order to place"""
@@ -609,23 +452,6 @@ class ActionWhichDate(Action):
              dispatcher.utter_message(template="utter_feedback")
 
 
-
-# class ActionLunchPacksAvailable(Action):
-#     """Selection of date for order to place"""
-    
-
-#     def name(self):
-#         return "action_select_date"
-    
-#     def run(self,dispatcher,tracker,domain):  
-#         child_id = tracker.get_slot("child_id")
-#         value=tracker.get_slot('business_email')
-#         order_id=tracker.get_slot('order_id')
-#         print(order_id)
-#         data = {"token": "null","data": {"user_email": value, "child_id":child_id}}
-#         # response = requests.post('https://cornerstonesolutions.ai/subs/api_child_order_availalable',data=json.dumps(data))
-#         # w = response.json()   
-#         w=api.child_order_availalable(data)
         
 class ActionSelectDate(Action):
     """Selection of date for order to place"""
@@ -766,10 +592,6 @@ class ActionFeedBack(Action):
         api.place_order(data)
         return()   
 
-
-
-
-
 class ActionPleaseGoQuickOrder(Action):
     """Business Email Extractions"""
     
@@ -805,25 +627,3 @@ class ActionForLocation(Action):
         else:
              dispatcher.utter_message(template="utter_feedback")
            
-        
-        
-        
-        
-        
-
-        
-  
-    
-                    
-                
-        
-           
-        
-        
-        
-        
-        
-
-        
-  
-    
